@@ -1,0 +1,112 @@
+﻿@model IEnumerable<Artist.Models.Orders>
+
+     
+        @{
+            ViewData["Title"] = "Cart";
+            Layout = "~/Views/Shared/Customer.cshtml";
+            var totalPrice = ViewBag.total;
+            var totalOrders = ViewBag.countOfOrders;
+
+        }
+
+
+        <div class="card">
+
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="back-to-shop"><a href="@Url.Action("Gallery", "Home")">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </table>
+                    @foreach (var item in Model)
+                    {
+                        <form asp-action="DeleteOrder">
+                            <div hidden>
+                                <input asp-for="@item.OrderId" class="form-control" />
+                                <span asp-validation-for="@item.OrderId" class="text-danger"></span>
+                            </div>
+                            <div class="row">
+                                <div class="row main align-items-center">
+                                    <div class="col">
+                                        <img src=@Url.Content("~/Image/" + item.Art.ImageName) asp-append-version="true" alt="" style="height:100px; width:100%;" />
+                                    </div>
+                                    <div class="col " style="margin-left:50px">
+                                        <div class="row ">
+                                            @Html.DisplayFor(model => item.Art.Title)
+                                        </div>
+
+                                    </div>
+                                    <div class="col">
+                                        @Html.DisplayFor(model => item.Quantity)
+                                    </div>
+                                    <div class="col">
+                                        &euro; @((item.Quantity * item.Art.ArtPrice))
+                                    </div>
+                                    <div >
+                                        @Html.Hidden("id", @item.OrderId)
+                                        <button type="submit" value="Delete">&#10005;</button>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div class="col-md-4 summary">
+                    <div>
+                        <h5><b>Summary</b></h5>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">ITEMS @totalOrders</div>
+                        <div class="col text-right">$@totalPrice</div>
+                    </div>
+                    <form>
+                        <p>SHIPPING</p> <select>
+                                            <option class="text-muted">Standard-Delivery- $5.00</option>
+                        </select>
+                    </form>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">&euro;  @(totalPrice + 5)</div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                    <div>
+                        <img class="mr-2" width="45px"
+                             src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                             alt="Visa">
+                        <img class="mr-2" width="45px"
+                             src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                             alt="American Express">
+                        <img class="mr-2" width="45px"
+                             src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                             alt="Mastercard">
+
+                        <form asp-action="CheckOut">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="Code" name="Code" placeholder="Code" required style="font-size:large">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" required style="font-size:large">
+                            </div>
+
+                            <button type="submit" value="Checkout" class="btn btn-primary" style="font-size:large">Checkout</button>
+                        </form>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+

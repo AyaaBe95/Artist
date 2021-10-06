@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Artist.Models.Services>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Services</h1>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">All</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <aside class="profile-nav alt">
+                    <section class="card">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Title:</strong> @item.Title
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Description:</strong> @item.Description
+                            </li>
+
+                            <li class="list-group-item">
+
+                                <a asp-action="Edit" asp-route-id="@item.ServiceId">Edit</a>
+                            </li>
+
+
+                        </ul>
+
+                    </section>
+                </aside>
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,116 @@
+﻿@model Artist.Models.Cart
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-6">
+            <form asp-action="Edit1" enctype="multipart/form-data">
+                <div id="contact-form" class="form-container" data-form-container>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="form-title ">
+                            <h2 class="text-center">Edit Cart Status</h2>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="CartId" />
+
+                    <div class="input-container">
+
+                        <div class="row">
+                            <label asp-for="CartId" class="control-label">ID</label>
+
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="CartId" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="UserName" class="control-label">UserName</label>
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="UserName" readonly>
+                            </span>
+                        </div>
+                        <div class="row" hidden>
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="UserId" name="userid" readonly>
+                            </span>
+                        </div>
+                        <div class="row" hidden>
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="CartDate" name="cartdate" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="Location" class="control-label">Location</label>
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="Location" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="PhoneNumber" class="control-label">PhoneNumber</label>
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="PhoneNumber" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="TotalOrders" class="control-label">Total Orders</label>
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="TotalOrders" readonly>
+                            </span>
+                        </div>
+                        <div class="row">
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="TotalPrice" readonly>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <label asp-for="Status" class="control-label">Status</label>
+
+                            <span class="req-input">
+                                <select class="input-status" asp-for="Status" name="status" style="width:100%">
+                                    <option name="select">Select</option>
+                                    <option name="On Way">On Way</option>
+                                    <option name="Delivered">Delivered</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="row submit-row">
+                            <button type="submit" class="btn btn-block submit-form" value="Edit" style="font-size:large;">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

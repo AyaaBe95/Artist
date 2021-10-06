@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Artist.Models.Reports>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Accountant.cshtml";
+
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.ConfirmPassword)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

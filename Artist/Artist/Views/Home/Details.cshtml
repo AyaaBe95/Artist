@@ -1,0 +1,47 @@
+﻿@model Artist.Models.ArtWorks
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Gallery.cshtml";
+
+}
+
+<div class="content mt-3">
+
+    <div class="row align-items-center justify-content-center mb-2">
+        <strong class="text-center">
+            @Html.DisplayFor(model => model.Title)
+        </strong>
+    </div>
+            
+
+        <div class="row align-items-center justify-content-center mb-2 ">
+            <img src=@Url.Content("~/Image/" + Model.ImageName) asp-append-version="true" class="img-fluid" style="width:900px; height:400px" />
+
+        </div>
+
+        <div class="row align-items-center justify-content-center mb-2">
+            <div class="card">
+
+                <div>
+                    <strong>Price</strong>: $@Html.DisplayFor(model => model.ArtPrice)
+                </div>
+
+                <div>
+                    <strong>Category:</strong> @Html.DisplayFor(model => model.Category.CategoryName)
+                </div>
+                <div>
+                    <strong>Quantity:</strong> @Html.DisplayFor(model => model.Quantity)
+                </div>
+                <div><strong>Posted by:</strong> @Html.DisplayFor(model => model.User.fullname)</div>
+                <div>
+                    <strong>Artist:</strong> @Html.DisplayFor(model => model.ArtistFname) @Html.DisplayFor(model => model.ArtistLname)
+                </div>
+
+                <textarea lass="form-control" rows="4" cols="50" contenteditable="false" disabled>
+                    @Html.DisplayFor(model => model.Description) 
+              </textarea>
+
+            </div>
+        </div>
+        </div>

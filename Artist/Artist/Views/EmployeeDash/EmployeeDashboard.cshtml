@@ -1,0 +1,201 @@
+﻿@model Tuple<IEnumerable<Artist.Models.Users>, IEnumerable<Artist.Models.Notification>>;
+
+@{
+    Layout = "~/Views/Shared/Employee2.cshtml";
+    var username = ViewBag.userName;
+    var email = ViewBag.email;
+    var newTasks = ViewBag.newTasks;
+    var noti = ViewBag.noti;
+
+}
+
+
+<div class="content mt-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            @foreach (var item2 in Model.Item1)
+            {
+                <form asp-action="EditImage" enctype="multipart/form-data">
+
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img src=@Url.Content("~/Image/" + item2.UserImage) asp-append-version="true" class="rounded-circle mt-5" style="width:500px" />
+                        <div class="input-container">
+                            <div class="row">
+                                <div class="row" hidden>
+                                    <input asp-for="@item2.ImageFile" class="btn btn-block submit-form" />
+                                    <span asp-validation-for="@item2.ImageFile" class="text-danger"></span>
+                                </div>
+                                <div class="row">
+                                    <input asp-for="@item2.ImageFile" name="ImageFile" class="" accept="image/*" />
+                                    <span asp-validation-for="@item2.ImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            @*<img class="rounded-circle mt-5" style="width:500px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">*@
+                            <div class="d-flex flex-column align-items-center text-center p-1 py-3">
+
+                                <span class="font-weight-bold" style="font-size:large">@username</span>
+                                <span class="text-black-50" style="font-size:large">@email</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.Hidden("id", @item2.UserId)
+
+                            <input class="btn btn-primary " value="Save Image" type="submit" style="font-size:large" />
+                        </div>
+                    </div>
+                </form>
+            }
+
+
+        </div>
+
+
+        @foreach (var item in Model.Item1)
+        {
+
+            <div class="col-md-5 border-right">
+                <form asp-action="Edit">
+                    <div hidden>
+                        <input asp-for="@item.UserId" class="form-control" />
+                        <span asp-validation-for="@item.UserId" class="text-danger"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="text-right">Profile Settings</h3>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels">First Name</label>
+                                <input type="text" class="form-control" name="FirstName" asp-for="@item.FirstName" style="font-size:large">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Last Name</label>
+                                <input type="text" class="form-control" name="LastName" asp-for="@item.LastName" style="font-size:large">
+
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Mobile Number1</label>
+                                <input type="text" class="form-control" name="PhoneNumber1" asp-for="@item.PhoneNumber1" style="font-size:large">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Mobile Number2</label>
+                                <input type="text" class="form-control" name="PhoneNumber2" asp-for="@item.PhoneNumber2" style="font-size:large">
+
+                            </div>
+                            <div class="col-md-12" hidden>
+                                <input type="text" class="form-control" name="Username" asp-for="@item.Username">
+
+                            </div>
+                            <div class="col-md-12" hidden>
+                                <input type="text" class="form-control" name="Password" asp-for="@item.Password">
+
+                            </div>
+                            <div class="col-md-12" hidden>
+                                <input type="text" class="form-control" name="ConfirmPassword" asp-for="@item.ConfirmPassword">
+
+                            </div>
+
+                            <div class="col-md-12" hidden>
+                                <input type="text" class="form-control" name="Position" asp-for="@item.Position">
+
+                            </div>
+                            <div class="col-md-12" hidden>
+                                <input type="text" class="form-control" name="RoleId" asp-for="@item.RoleId">
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="labels">Gender</label>
+                                <input type="text" class="form-control" name="Gender" asp-for="@item.Gender" style="font-size:large" readonly>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="labels">Join Date</label>
+                                <input type="text" class="form-control" name="JoinDate" asp-for="@item.JoinDate" style="font-size:large" disabled>
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Birthday</label>
+                                <input type="date" class="form-control" name="DateOfBirth" asp-for="@item.DateOfBirth" style="font-size:large" />
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email ID</label>
+                                <input type="email" class="form-control" name="Email" asp-for="@item.Email" style="font-size:large">
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Country</label>
+                                <input type="text" class="form-control" name="Country" value="@Html.DisplayFor(modelItem => item.Location.Country)" style="font-size:large">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">City</label>
+                                <input type="text" class="form-control" name="CityName" value="@Html.DisplayFor(modelItem => item.Location.CityName)" style="font-size:large">
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.Hidden("ID", @item.UserId)
+
+                            <input class="btn btn-primary " value="Save Profile" type="submit" style="font-size:large" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        }
+        <div class="col-md-4" style="margin-top:55px">
+            @foreach (var item in Model.Item1)
+            {
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Department</label>
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.Dep.Title)" readonly style="font-size:large">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+
+                        <label class="labels">Position</label>
+                        <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.Position)" readonly style="font-size:large">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-12">
+                        <label class="labels">Salary</label>
+                        <input type="text" class="form-control" name="PhoneNumber1" value="@Html.DisplayFor(modelItem => item.Salary)" readonly style="font-size:large">
+                    </div>
+                </div>
+            }
+            <div class="row mt-3">
+                <div class="col-md-12">
+
+                    <div class="card text-white bg-flat-color-1">
+                        <div class="card-body pb-0">
+
+                            <h4 class="mb-0">
+                                <span class="count">@newTasks</span>
+                            </h4>
+                            <p class="text-light mt-2">New Tasks</p>
+
+                            <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                                <canvas id="widgetChart1"></canvas>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

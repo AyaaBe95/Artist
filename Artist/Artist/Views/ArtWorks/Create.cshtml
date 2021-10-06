@@ -1,0 +1,100 @@
+﻿@model Artist.Models.ArtWorks
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/Customer.cshtml";
+
+}
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-5"  >
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div id="contact-form" class="form-container" data-form-container>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="form-title ">
+                            <h2 class="text-center">Add Drawing</h2>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div class="row" hidden>
+                            <label asp-for="ImageName" class="control-label"></label>
+                            <input asp-for="ImageName" class="form-control" />
+                            <span asp-validation-for="ImageName" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="ImageFile" class="control-label"> Upload Image</label>
+                            <input asp-for="ImageFile" accept="image/*" type="file" required />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                                <span class="req-input">
+
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" asp-for="Title" data-min-length="8" placeholder="Title" required>
+                                </span>
+                            </div>
+                        <div class="row">
+                            <label asp-for="CategoryId" class="control-label"> Category</label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId" style="font-size:large; height:35px"></select>
+                        </div>
+
+
+                        <div class="row">
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="ArtistFname" data-min-length="8" placeholder="Artist Fname" required>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="ArtistLname" data-min-length="8" placeholder="Artist Lname" required>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="ArtPrice" data-min-length="8" placeholder="Price" required>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="Quantity" data-min-length="8" placeholder="Quantity" required>
+                            </span>
+                        </div>
+
+                        <div class="row">
+                            <span class="req-input message-box">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <textarea type="textarea" asp-for="Description" data-min-length="10" placeholder="Description"></textarea>
+                            </span>
+                        </div>
+                        <div class="row submit-row">
+                            <button type="submit" class="btn btn-block submit-form" value="Create" style="font-size:large;">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a asp-action="CustomerArts">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

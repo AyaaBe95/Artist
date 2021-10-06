@@ -1,0 +1,81 @@
+﻿@model Artist.Models.Role
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Roles</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<div class="content mt-3">
+
+
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+
+
+                <div class="card-body card-block">
+                    <form asp-action="Edit" class="form-horizontal">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="RoleId" />
+                        <div class="row form-group">
+                            <div class="col col-sm-5"><label for="input-normal" class=" form-control-label">Role Name</label></div>
+                            <div class="col col-sm-6"><input asp-for="RoleName" id="input-normal" class="input-sm form-control-sm form-control"></div>
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-sm-5"><label for="input-normal" class=" form-control-label">Role Type</label></div>
+                            <div class="col col-sm-6"><input asp-for="RoleType" id="input-normal" class="input-sm form-control-sm form-control"></div>
+                            <span asp-validation-for="RoleType" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="row align-items-center justify-content-center mt-3">
+                            <div class="col-2">
+                                <button type="submit" value="Save" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-dot-circle-o"></i> Save
+                                </button>
+                            </div>
+
+                            <div class="col-2">
+                                <button type="reset" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-ban"></i> Reset
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                    </form>
+                    <div class="mt-2">
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

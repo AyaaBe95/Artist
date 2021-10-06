@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<Artist.Models.Users>
+
+@{ int rowNo1 = 0;
+    Layout = "~/Views/Shared/Accountant.cshtml";
+}
+
+<div class="content mt-3">
+
+    <div class="row align-items-center justify-content-center" id="pdfTable">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="sparkline13-list" style=" background: #fff; padding: 20px; ">
+                <div class="sparkline13-hd">
+                    <div class="main-sparkline13-hd">
+                        <h1 style="font-size: 20px; color: #303030;">Customers Data Table</h1>
+                    </div>
+                </div>
+                <div class="sparkline13-graph">
+                    <div class="datatable-dashv1-list custom-datatable-overright">
+                        <div id="toolbar">
+                            <select class="form-control dt-tb">
+                                <option value="">Export Basic</option>
+                                <option value="all">Export All</option>
+                                <option value="selected">Export Selected</option>
+                            </select>
+                        </div>
+                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                               data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                            <thead>
+                                <tr>
+                                    <th data-field="state" ></th>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name1" >First Name</th>
+                                    <th data-field="name2" >Last Name</th>
+                                    <th data-field="name3" >Email</th>
+                                    <th data-field="name4" >Gender</th>
+                                    <th data-field="name5" >Join Date</th>
+                                    <th data-field="name6"> Number1</th>
+                                    <th data-field="name7" > Number2</th>
+                                    <th data-field="name8" >Country</th>
+                                    <th data-field="name9" >City</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center">@(rowNo1 += 1)</td>
+                                            <td class="text-center">@item.FirstName</td>
+                                            <td class="text-center">@item.LastName</td>
+                                            <td class="text-center">@item.Email</td>
+                                            <td class="text-center">@item.Gender</td>
+                                            <td class="text-center"> @item.JoinDate.Value.ToShortDateString()</td>
+                                            <td class="text-center">@item.PhoneNumber1</td>
+                                            <td class="text-center">@item.PhoneNumber2</td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(model => item.Location.Country)
+                                            </td>
+                                            <td class="text-center"> @Html.DisplayFor(model => item.Location.CityName)</td>
+
+
+                                        </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row align-items-center justify-content-center mt-3 mb-5">
+        <form asp-action="Export">
+            <div class="col-md-5">
+                <input type="submit" value="Excle Report"
+                       class="btn btn-dark" asp-action="Export" style="font-size:large; color:white" />
+            </div>
+        </form>
+
+        <form asp-action="CreatePdf">
+            <div class="col-md-5">
+                <input type="submit" value="Pdf Report"
+                       class="btn btn-dark" asp-action="CreatePdf" style="font-size:large; color:white" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+

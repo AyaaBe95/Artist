@@ -1,0 +1,104 @@
+  public Operations(){}
+
+        public bool InsertDepartment(Department dep)
+        {
+            SqlConnection con; // open connection with database
+            string path; // path of database
+
+            try
+            {
+                path = @"Data Source=DESKTOP-9MB1HP0\SQLEXPRESS;Initial Catalog=my company;Integrated Security=True;Pooling=False";
+                con = new SqlConnection(path);
+                con.Open();
+                Console.WriteLine("Database connected Successfuly");
+
+                Console.WriteLine("Please Enter Department ID: ");
+                dep.Id = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please Enter Department Name: ");
+                dep.Name = Console.ReadLine();
+
+                Console.WriteLine("Please Enter Department Location: ");
+                dep.Location = Console.ReadLine();
+
+                string q = "insert into Department(Id,Name,Location) Values ('" + dep.Id + "','" + dep.Name + "','" + dep.Location + "')";
+                SqlCommand ins = new SqlCommand(q, con); // send the command 
+
+                ins.ExecuteNonQuery();
+
+                Console.WriteLine("Data Inserted Successfuly");
+            }
+            catch (SqlException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return true;
+        }
+
+        public bool InsertEmployee(Employee emp)
+        {
+            SqlConnection con; // open connection with database
+            string path; // path of database
+
+            try
+            {
+                path = @"Data Source=DESKTOP-9MB1HP0\SQLEXPRESS;Initial Catalog=my company;Integrated Security=True;Pooling=False";
+                con = new SqlConnection(path);
+                con.Open();
+                Console.WriteLine("Database connected Successfuly");
+
+                Console.WriteLine("Please Enter Employee ID: ");
+                emp.Id = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please Enter Employee Name: ");
+                emp.Name = Console.ReadLine();
+
+                Console.WriteLine("Please Enter Employee Gender: ");
+                emp.Gender = Console.ReadLine();
+
+                Console.WriteLine("Please Enter Employee Salary: ");
+                emp.Salary = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please Enter Department ID: ");
+                emp.DepartmentID = Convert.ToInt32(Console.ReadLine());
+
+                string q = "insert into Employee(Id,Name,Gender,Salary,DepartmentID) Values ('" + emp.Id + "','" + emp.Name + "','" + emp.Gender + "','" + emp.Salary + "','" + emp.DepartmentID + "')";
+                SqlCommand ins = new SqlCommand(q, con); // send the command 
+
+                ins.ExecuteNonQuery();
+
+                Console.WriteLine("Data Inserted Successfuly");
+            }
+            catch (SqlException ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return true;
+        }
+
+        public void displayEmployeeAtDepartment()
+        {
+            using(sampleDataContext obj= new sampleDataContext()) // get access to the tables 
+            {
+                foreach (Department o1 in obj.Departments) //the data stored in the list (departments)
+                {
+                    Console.WriteLine("("+o1.Name+")"+ " Has the following employees");
+
+                    foreach (Employee o2 in obj.Employees)
+                    {
+
+                        if (o1.Id == o2.DepartmentID)
+                        {
+                            Console.WriteLine(o2.Name + " Salary " + o2.Salary);
+
+                        }
+                    }
+                }
+                Console.WriteLine(" ");
+            }
+        }
+
+
+    }

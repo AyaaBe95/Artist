@@ -1,0 +1,100 @@
+﻿@model Artist.ViewModel.CategoryDetailsVM
+
+@{ ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+    int rowNo1 = 0;
+}
+
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>
+                    Category:  @Html.DisplayFor(model => model.Name)
+                </h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Categories</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-5 align-items-center justify-content-center" >
+
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <div class="sparkline13-list" style=" background: #fff; padding: 20px; ">
+            <div class="sparkline13-hd">
+                <div class="main-sparkline13-hd">
+                    <h1 style="font-size: 20px; color: #303030;">Data Table</h1>
+                </div>
+            </div>
+            <div class="sparkline13-graph">
+                <div class="datatable-dashv1-list custom-datatable-overright">
+                    <div id="toolbar">
+                        <select class="form-control dt-tb">
+                            <option value="">Export Basic</option>
+                            <option value="all">Export All</option>
+                            <option value="selected">Export Selected</option>
+                        </select>
+                    </div>
+                    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                           data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="id">ID</th>
+                                <th data-field="name1" >Title</th>
+                                <th data-field="name2" >Artist Name</th>
+                                <th data-field="name4" >Price</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                @foreach (var item in Model.ArtWorks)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>@(rowNo1 += 1)</td>
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ArtistFname)  @Html.DisplayFor(modelItem => item.ArtistLname)
+                                        </td>
+
+
+                                        
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ArtPrice)
+                                        </td>
+                                    </tr>
+
+                                }
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

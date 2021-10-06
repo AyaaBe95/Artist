@@ -1,0 +1,386 @@
+﻿@model IEnumerable<Artist.Models.Users>
+
+@{
+    Layout = "~/Views/Shared/Accountant.cshtml";
+    var countOfCustomers = ViewBag.countOfCustomers;
+    var countOfNewCustomers = ViewBag.countOfNewCustomers;
+    var countOfEmployees = ViewBag.countOfEmployees;
+    var countOfAccountant = ViewBag.countOfAccountant;
+    var departments = ViewBag.departments;
+
+    var avgOfSalary = ViewBag.avgOfSalary;
+
+    var newTasks = ViewBag.newTasks;
+    var solvedTasks = ViewBag.solvedTasks;
+
+
+    var totalArts = ViewBag.totalArts;
+    var soldArts = ViewBag.soldArts;
+
+    var payedOrders = ViewBag.payedOrders;
+    var unpayedOrders = ViewBag.unpayedOrders;
+
+    var username = ViewBag.userName;
+    var department = ViewBag.department;
+
+    var email = ViewBag.email;
+}
+
+<div class="col-sm-12">
+    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+        <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Avg Salary</div>
+                    <div class="stat-digit">@avgOfSalary</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-image text-primary border-primary"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Sold Arts</div>
+                    <div class="stat-digit">@soldArts</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-camera text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Total Drawings</div>
+                    <div class="stat-digit">@totalArts</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">New Customers</div>
+                    <div class="stat-digit">@countOfNewCustomers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-sm-6 col-lg-3">
+    <div class="card text-white bg-flat-color-1">
+        <div class="card-body pb-0">
+
+            <h4 class="mb-0">
+                <span class="count">@countOfCustomers</span>
+            </h4>
+            <p class="text-light">Total customers</p>
+
+            <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                <canvas id="widgetChart1"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!--/.col-->
+
+<div class="col-sm-6 col-lg-3">
+    <div class="card text-white bg-flat-color-2">
+        <div class="card-body pb-0">
+
+            <h4 class="mb-0">
+                <span class="count">@countOfEmployees</span>
+            </h4>
+            <p class="text-light">Total employees</p>
+
+            <div class="chart-wrapper px-0" style="height:70px;" height="70">
+                <canvas id="widgetChart2"></canvas>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--/.col-->
+
+<div class="col-sm-6 col-lg-3">
+    <div class="card text-white bg-flat-color-3">
+        <div class="card-body pb-0">
+
+            <h4 class="mb-0">
+                <span class="count">@countOfAccountant</span>
+            </h4>
+            <p class="text-light">Total accountant</p>
+
+        </div>
+
+        <div class="chart-wrapper px-0" style="height:70px;" height="70">
+            <canvas id="widgetChart3"></canvas>
+        </div>
+    </div>
+</div>
+<!--/.col-->
+
+<div class="col-sm-6 col-lg-3">
+    <div class="card text-white bg-flat-color-4">
+        <div class="card-body pb-0">
+
+            <h4 class="mb-0">
+                <span class="count">@departments</span>
+            </h4>
+            <p class="text-light">Total department</p>
+
+            <div class="chart-wrapper px-3" style="height:70px;" height="70">
+                <canvas id="widgetChart4"></canvas>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-shopping-cart text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Unpayed Orders</div>
+                    <div class="stat-digit">@unpayedOrders</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-shopping-cart-full text-warning border-warning"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Payed Orders</div>
+                    <div class="stat-digit">@payedOrders</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-receipt text-success border-success"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">New Tasks</div>
+                    <div class="stat-digit">@newTasks</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-3 col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-tag text-warning border-warning"></i></div>
+                <div class="stat-content dib">
+                    <div class="stat-text">Solved Tasks</div>
+                    <div class="stat-digit">@solvedTasks</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-2">
+    <div class="row">
+
+
+
+
+        <div class="col-md-3 border-right">
+            @foreach (var item2 in Model)
+            {
+                <form asp-action="EditImage" enctype="multipart/form-data">
+
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img src=@Url.Content("~/Image/" + item2.UserImage) asp-append-version="true" class="rounded-circle mt-5" style="width:500px" />
+                        <div class="input-container">
+                            <div class="row">
+                                <div class="row" hidden>
+                                    <input asp-for="@item2.UserImage" class="btn btn-block submit-form" />
+                                    <span asp-validation-for="@item2.UserImage" class="text-danger"></span>
+                                </div>
+                                <div class="row">
+                                    <input asp-for="@item2.ImageFile" type="file" name="ImageFile" class="" accept="image/*" />
+                                    <span asp-validation-for="@item2.ImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <span> </span>
+                        </div>
+                        <div class="row">
+                            @Html.Hidden("ID", @item2.UserId)
+
+                            <input class="btn btn-dark mt-1 " value="Save Image" type="submit" style="font-size:large;" />
+                        </div>
+                    </div>
+                </form>
+            }
+            <div class="d-flex flex-column align-items-center text-center p-1 py-3">
+
+                <span class="font-weight-bold" style="font-size:large">@username</span>
+                <span class="text-black-50" style="font-size:large">@email</span>
+            </div>
+        </div>
+
+
+
+        @foreach (var item in Model)
+        {
+
+            <div class="col-md-5 border-right">
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div hidden>
+                        <input asp-for="@item.UserId" class="form-control" />
+                        <span asp-validation-for="@item.UserId" class="text-danger"></span>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h3 class="text-right">Profile Settings</h3>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label class="labels">First Name</label>
+                                <input type="text" class="form-control" name="FirstName" asp-for="@item.FirstName" style="font-size:large">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Last Name</label>
+                                <input type="text" class="form-control" name="LastName" asp-for="@item.LastName" style="font-size:large">
+
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label class="labels">Mobile Number1</label>
+                                <input type="text" class="form-control" name="PhoneNumber1" asp-for="@item.PhoneNumber1" style="font-size:large">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Mobile Number2</label>
+                                <input type="text" class="form-control" name="PhoneNumber2" asp-for="@item.PhoneNumber2" style="font-size:large">
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Gender</label>
+                                <input type="text" class="form-control" name="Gender" asp-for="@item.Gender" style="font-size:large">
+
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <label class="labels">Join Date</label>
+                                <input type="text" class="form-control" name="JoinDate" value="@item.JoinDate.Value.ToShortDateString()" style="font-size:large" disabled>
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Birthday</label>
+                                <input type="date" class="form-control" name="DateOfBirth" asp-for="@item.DateOfBirth" style="font-size:large" />
+
+
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Email ID</label>
+                                <input type="email" class="form-control" name="Email" asp-for="@item.Email" style="font-size:large">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">Country</label>
+                                <input type="text" class="form-control" name="Country" value="@Html.DisplayFor(modelItem => item.Location.Country)" style="font-size:large">
+                            </div>
+                            <div class="col-md-12">
+                                <label class="labels">City</label>
+                                <input type="text" class="form-control" name="CityName" value="@Html.DisplayFor(modelItem => item.Location.CityName)" style="font-size:large">
+                            </div>
+
+
+                        </div>
+
+                        <div class="row justify-content-center align-items-center mt-2">
+                            @Html.Hidden("id", @item.UserId)
+
+                            <input class="btn btn-dark" value="Save" type="submit" style="font-size:large;" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    <div class="col-md-4" style="margin-top:55px">
+
+        @foreach (var item in Model)
+        {
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label class="labels">Department</label>
+                    <input type="text" class="form-control"  asp-for="@item.Dep.Title" style="font-size:large" disabled>
+
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+
+                    <label class="labels">Position</label>
+                    <input type="text" class="form-control" value="@Html.DisplayFor(modelItem => item.Position)" readonly style="font-size:large">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label class="labels">Salary</label>
+                    <input type="text" class="form-control" name="PhoneNumber1" value="@Html.DisplayFor(modelItem => item.Salary)" readonly style="font-size:large">
+                </div>
+            </div>
+        }
+    </div>
+
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

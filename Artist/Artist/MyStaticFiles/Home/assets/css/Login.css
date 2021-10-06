@@ -1,0 +1,342 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+:root {
+    --mainTransition: all 0.5s ease-in-out;
+    --mainFont: 'Yanone Kaffeesatz', sans-serif;
+    --mainColor: rgb(149, 0, 0);
+    --secondColor: rgb(0, 72, 141);
+    --thirdColor: rgb(240, 207, 0);
+    --forthColor: white;
+    --fifthColor: rgb(58, 85, 156);
+    --darkColor: black;
+}
+
+body {
+    font-family: var(--mainFont);
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 60px 10px;
+    color: var(--forthColor);
+  
+    background-color: wheat;
+}
+
+.front {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.top {
+    position: absolute;
+    top: -1%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 230px;
+    height: 100px;
+    z-index: 4;
+}
+
+h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+}
+
+span {
+    font-size: 12px;
+}
+
+a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+button {
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: black;
+    font-size: 12px;
+    font-weight: 700;
+    border: 2px solid var(--mainColor);
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    color: var(--forthColor);
+    transition: var(--mainTransition);
+}
+
+    button:active {
+        transform: scale(0.95);
+    }
+
+    button:focus {
+        outline: none;
+    }
+
+    button.ghost {
+        background-color: #ffc451;
+        border: 2px solid var(--mainColor);
+        cursor: pointer;
+        color: var(--forthColor);
+        transition: var(--mainTransition);
+        margin-top: 2rem;
+    }
+
+        button:hover,
+        button.ghost:hover {
+            color: var(--mainColor);
+            background-color: var(--forthColor);
+            font-weight: 700;
+        }
+
+form {
+    background: #ffc451;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+    color: var(--secondColor);
+}
+
+input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    max-width: 100%;
+    height: 570px;
+    border: 5px solid var(--mainColor);
+    border-radius: 0.5rem;
+    margin-top: 100px;
+    box-shadow: 1px -1px 43px -6px rgba(255, 255, 255, 0.75);
+    z-index: 0;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+}
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 3;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%, 100% {
+        opacity: 1;
+        z-index: 3;
+    }
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 2;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+    color: var(--thirdColor);
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+    .overlay-left p {
+        margin-bottom: 2rem;
+    }
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.sign-up-container form input {
+    margin: 1rem 0;
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+.return {
+    position: absolute;
+    top: 0;
+    left: 1%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 12%;
+    cursor: pointer;
+}
+
+.returnLink {
+    color: var(--forthColor);
+    font-size: 1.2rem;
+    transition: var(--mainTransition);
+}
+
+    .returnLink:hover {
+        color: var(--mainColor);
+    }
+
+/* header */
+header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+    height: 70px;
+    background-color: var(--darkColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+ul {
+    width: 60%;
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li a {
+    font-size: 2rem;
+    color: var(--thirdColor);
+    font-weight: bold;
+    transition: var(--mainTransition);
+}
+
+li {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    transition: var(--mainTransition);
+}
+
+    
+
+    li a:hover {
+        color: white;
+    }
+
+
+

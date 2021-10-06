@@ -1,0 +1,106 @@
+﻿@model Artist.Models.Team
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Teams</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div id="contact-form" class="form-container" data-form-container>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="form-title ">
+                            <h2 class="text-center">Edit Team member</h2>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="TeamId" />
+
+                    <img src=@Url.Content("~/Image/" + Model.Image) asp-append-version="true" style="border-radius:50%" width="250" height="250" />
+                    <div class="input-container">
+                        <div class="row">
+                            <div class="row" hidden>
+                                <label asp-for="ImageFile" class="control-label">Image</label>
+
+                                <input asp-for="ImageFile" class="btn btn-block submit-form" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                            <div class="row">
+                                <label asp-for="ImageFile" class="control-label">Image</label>
+                                <input asp-for="ImageFile" class="btn btn-block " accept="image/*" />
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top" > </span>
+                                <input type="text" asp-for="Name" placeholder="Name" >
+                            </span>
+                        </div>
+                        <div class="row">
+
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="Position" placeholder="Position">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="FacebookLink" placeholder="Facebook Link">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="InstgramLink" placeholder="Instgram Link">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="TwiterLink" placeholder="Twiter Link">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="req-input message-box">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <textarea type="textarea" asp-for="Description" data-min-length="10" placeholder="Description"></textarea>
+                        </div>
+                        <div class="row submit-row">
+                            <button type="submit" class="btn btn-block submit-form" value="Create" style="font-size:large;">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

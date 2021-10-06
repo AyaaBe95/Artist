@@ -1,0 +1,138 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc;
+
+@model X.PagedList.IPagedList<Artist.Models.ArtWorks>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Gallery.cshtml";
+
+}
+
+<main id="main ">
+
+        <div class="container con">
+
+            <div class="row mt-5">
+                <div class="title">
+                    <h3>Available Drawings <span class="bg">Gallery</span></h3>
+                </div>
+            </div>
+            <div class="row">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 " style="margin-bottom:30px;">
+                        <form asp-action="Order">
+
+
+                            <div class="card" style="width:250px">
+                                <div hidden>
+                                    <input asp-for="@item.ArtId" class="form-control" />
+                                    <span asp-validation-for="@item.ArtId" class="text-danger"></span>
+                                </div>
+                                <img src=@Url.Content("~/Image/" + item.ImageName) asp-append-version="true" />
+                                <div class="card-body">
+                                    <p class="text-date">@item.Title</p>
+                                    <div class="line"></div>
+                                    <div>
+                                        <span style=" font-weight: bold; ">Artist: </span><span>@item.ArtistFname @item.ArtistLname</span>
+
+                                    </div>
+                                    <div>
+                                        <span style=" font-weight: bold; ">Category: </span><span>
+                                            @Html.DisplayFor(model => item.Category.CategoryName)
+                                        </span>
+
+                                    </div>
+                                    <div>
+                                        <span style=" font-weight: bold; ">Quantity: </span><span>@item.Quantity</span>
+
+                                    </div>
+
+                                    <div>
+                                        <span style=" font-weight: bold; ">Price: </span><span>$@item.ArtPrice</span>
+
+                                    </div>
+                                    <div class="line" style="margin-top:5px"></div>
+                                    <div class="row">
+                                        @if (User.IsInRole("User"))
+                                        {
+                                            <div class="col-6">
+                                                @Html.Hidden("artId", @item.ArtId)
+                                                <input type="submit" class="btn btn-dark" value="Add" />
+                                            </div>
+                                        }
+
+                                        <div class="col-6">
+                                            <a asp-action="Details" asp-route-id="@item.ArtId">Details</a>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
+
+
+
+            </div>
+            <div class="row align-items-center justify-content-center mt-2 mb-2">
+                <ul id="pageListul">
+                    <li id="pageListLI">
+                        @Html.PagedListPager(Model, page => Url.Action("Gallery", new { page }))
+
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+
+
+
+
+</main>
+<style>
+    #pageListul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /*background-color: #333;*/
+    }
+
+    #pageListLI {
+        float: left;
+        border-right: 1px solid #bbb;
+        background-color: black;
+    }
+
+        #pageListLI:last-child {
+            border-right: none;
+        }
+
+        #pageListLI a {
+            display: block;
+            color: navajowhite;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+            #pageListLI a:hover:not(.active) {
+                color: whitesmoke;
+            }
+
+        #pageListLI .active {
+            background-color: navajowhite;
+            color: black;
+            padding: 14px 16px;
+        }
+
+</style>
+
+

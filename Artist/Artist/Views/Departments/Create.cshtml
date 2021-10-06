@@ -1,0 +1,77 @@
+﻿@model Artist.Models.Department
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Departments</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Create</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-3">
+
+
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Create <strong>New</strong>
+                </div>
+
+                <div class="card-body card-block">
+                    <form asp-action="Create" class="form-horizontal">
+                        <div class="row form-group">
+                            <div class="col col-sm-5"><label for="input-normal" class=" form-control-label">Department Name</label></div>
+                            <div class="col col-sm-6"><input asp-for="Title" id="input-normal" class="input form-control form-control"></div>
+                            <span asp-validation-for="Title" class="text-danger"></span>
+
+                        </div>
+                    
+                        <div class="row align-items-center justify-content-center mt-3">
+                            <div class="col-2">
+                                <button type="submit" value="Create" class="btn btn-dark btn">
+                                    <i class="fa fa-dot-circle-o"></i> Create
+                                </button>
+                            </div>
+                            
+                            <div class="col-2">
+                                <button type="reset" class="btn btn-danger btn">
+                                    <i class="fa fa-ban"></i> Reset
+                                </button>
+                            </div>
+ 
+                        </div>
+                        
+
+                    </form>
+                    <div class="mt-2">
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+

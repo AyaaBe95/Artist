@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Artist.Models.Team>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+    int rowNo1 = 0;
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Teams</h1>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="page-header">
+            <div class="page-title">
+                <ol class="breadcrumb ">
+                    <li class="active"><a asp-action="Create">Create New</a></li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-4">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">All</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row align-items-center justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">All Teams Members</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th data-field="name1" scope="col">#</th>
+                                    <th data-field="name2" scope="col">Image</th>
+                                    <th data-field="name3" scope="col">Name</th>
+                                    <th data-field="name4" scope="col">Position</th>
+                                    <th data-field="name5" scope="col">Facebook</th>
+                                    <th data-field="name6" scope="col">Instagram</th>
+                                    <th data-field="name7" scope="col">Twiter</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <th scope="col">
+                                            @(rowNo1 += 1)
+                                        </th>
+                                        <td>
+                                            <img src=@Url.Content("~/Image/" + item.Image) asp-append-version="true" alt="" style="height:150px; width:100%;" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Position)
+                                        </td>
+
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FacebookLink)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InstgramLink)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TwiterLink)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.TeamId">Edit</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.TeamId">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+

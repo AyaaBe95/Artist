@@ -1,0 +1,176 @@
+﻿@model Artist.ViewModel.EmployeeVM
+
+@{
+    ViewData["Title"] = "AddEmployee";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Employees</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Add</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+
+    <!-- MultiStep Form -->
+    <div class="container-fluid" id="grad1">
+        <div class="row justify-content-center mt-0">
+            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                    <h2><strong>Add New Employee</strong></h2>
+                    <p class="mt-3">Fill all form field to go to next step</p>
+                    <div class="row">
+                        <div class="col-md-12 mx-0">
+                            <form id="msform" asp-action="AddEmployee" enctype="multipart/form-data">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active" id="account"><strong>Account</strong></li>
+                                    <li id="personal"><strong>Personal</strong></li>
+                                    <li id="location"><strong>Location</strong></li>
+                                    <li id="job"><strong>Job</strong></li>
+                                    <li id="confirm"><strong>Finish</strong></li>
+                                </ul> <!-- fieldsets -->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Account Information</h2>
+                                        <input asp-for="Username" class="form-control" placeholder="Username" />
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+
+                                        <input asp-for="Email" class="form-control" placeholder="Email" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                                        <input asp-for="Password" class="form-control" placeholder="Password" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Personal Information</h2>
+                                        <div class="form-group">
+                                            <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                                            <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+
+                                            <div hidden>
+                                                <label asp-for="ImageFile" class="control-label"></label>
+                                                <input asp-for="ImageFile" accept="image/*" />
+                                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                            </div>
+                                            
+
+                                            <select class="form-control" asp-for="Gender">
+                                                <option>Select Gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+
+                                            <input asp-for="PhoneNumber1" class="form-control" placeholder="Phone Number1" />
+                                            <span asp-validation-for="PhoneNumber1" class="text-danger"></span>
+
+                                            <input asp-for="PhoneNumber2" class="form-control" placeholder="PhoneNumber2" />
+                                            <span asp-validation-for="PhoneNumber2" class="text-danger"></span>
+
+                                            <label asp-for="DateOfBirth" class="control-label"></label>
+                                            <input asp-for="DateOfBirth" class="form-control" />
+                                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+
+                                            <div hidden>
+                                            <label asp-for="JoinDate" class="control-label"></label>
+                                            <input asp-for="JoinDate" class="form-control" />
+                                            <span asp-validation-for="JoinDate" class="text-danger"></span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Location</h2>
+
+                                        <div class="form-group">
+
+                                            <label asp-for="Country" class="control-label"></label>
+                                            <input asp-for="Country" class="form-control" />
+                                            <span asp-validation-for="Country" class="text-danger"></span>
+
+                                            <label asp-for="CityName" class="control-label"></label>
+                                            <input asp-for="CityName" class="form-control" />
+                                            <span asp-validation-for="CityName" class="text-danger"></span>
+
+                                           
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="button" name="next" class="next action-button" value="Next Step" />
+                                </fieldset>
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title">Job</h2>
+
+                                        <div class="form-group">
+                                            <label asp-for="RoleId" class="control-label"></label>
+                                            <select asp-for="RoleId" class="form-control" asp-items="ViewBag.RoleId"></select>
+
+                                            <label asp-for="DepId" class="control-label"></label>
+                                            <select asp-for="DepId" class="form-control" asp-items="ViewBag.DepId"></select>
+
+                                            <input asp-for="Position" class="form-control" placeholder="position" />
+                                            <span asp-validation-for="Position" class="text-danger"></span>
+
+                                            <input asp-for="Salary" class="form-control" placeholder="Salary" />
+                                            <span asp-validation-for="Salary" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                    <input type="submit" value="Create" class="next action-button" />
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="form-card">
+                                        <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                                        </div> <br><br>
+                                        <div class="row justify-content-center">
+                                            <div class="col-7 text-center">
+                                                <h5>You Have Successfully Signed Up</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+   

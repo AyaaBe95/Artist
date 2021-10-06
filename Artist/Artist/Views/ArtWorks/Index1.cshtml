@@ -1,0 +1,128 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc;
+
+@model X.PagedList.IPagedList<Artist.Models.ArtWorks>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Drawings</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Sold</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="con content mt-3">
+    <div class="row mb-3">
+        <form asp-action="Search">
+
+            <div class="row ml-3">
+                <label>From</label>
+                <input name="datefrom" type="date" class="form-control" />
+
+            </div>
+            <div class="row ml-3">
+                <label>To</label>
+                <input name="dateto" type="date" class="form-control" />
+
+            </div>
+            <div class="row ml-3 mt-1 ">
+                <button type="submit" class="btn btn-dark submit-form" value="Search" style="font-size:small;">Search</button>
+
+            </div>
+        </form>
+    </div>
+
+
+    <div class="row ">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-lg-4 col-md col-sm col-xs " style="margin-bottom: 30px; ">
+
+
+                <div class="card" style="width:250px">
+                    <div hidden>
+                        <input asp-for="@item.ArtId" class="form-control" />
+                        <span asp-validation-for="@item.ArtId" class="text-danger"></span>
+                    </div>
+                    <img src=@Url.Content("~/Image/" + item.ImageName) asp-append-version="true" />
+                    <div class="card-body">
+                        <p class="text-date">@item.Title</p>
+                        <div class="line"></div>
+                        <div>
+                            <span style=" font-weight: bold; ">Artist: </span><span>@item.ArtistFname @item.ArtistLname</span>
+
+                        </div>
+                        <div>
+                            <span style=" font-weight: bold; ">Category: </span><span>
+                                @Html.DisplayFor(model => item.Category.CategoryName)
+                            </span>
+
+                        </div>
+
+
+                        <div>
+                            <span style=" font-weight: bold; ">Price: </span><span>$@item.ArtPrice</span>
+
+                        </div>
+                        <div class="line" style="margin-top:5px"></div>
+                        <div class="row align-items-center justify-content-center">
+
+
+                            <div class="col-6">
+                                <a asp-action="Details" asp-route-id="@item.ArtId">Details</a>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+    <div class="row align-items-center justify-content-center mt-2">
+        <ul id="pageListul" style="list-style:none;">
+            <li id="pageListLI">
+                @Html.PagedListPager(Model, page => Url.Action("Index1", new { page }))
+
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

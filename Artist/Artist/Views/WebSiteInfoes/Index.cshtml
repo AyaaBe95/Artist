@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Artist.Models.WebSiteInfo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Website Info</h1>
+
+            </div>
+        </div>
+    </div>    
+
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">All</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center" >
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <aside class="profile-nav alt">
+                    <section class="card">
+                        <div class="card-header user-header alt bg-dark">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h2 class="text-light display-6">@item.WebSiteName</h2>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Logo:</strong> @item.OpenTime
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Country:</strong> @item.Country
+                            </li>
+                            <li class="list-group-item">
+                                <strong>City:</strong> @item.City
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Email:</strong> @item.Email
+                            </li>
+                            <li class="list-group-item">
+                                <strong>PhoneNumber1:</strong>@item.PhoneNumber1
+                            </li>
+                            <li class="list-group-item">
+                                <strong>PhoneNumber2:</strong> @item.PhoneNumber2
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Facebook:</strong> @item.FacebookLink
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Instagram:</strong> @item.InstgramLink
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Twiter:</strong> @item.TwiterLink
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Sub Title:</strong> @item.Logo
+                            </li>
+                            <li class="list-group-item">
+
+                                <a asp-action="Edit" asp-route-id="@item.WebId">Edit</a>
+                            </li>
+
+                        </ul>
+
+                    </section>
+                </aside>
+            </div>
+        }
+    </div>
+    
+</div>
+
+
+

@@ -1,0 +1,227 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Fine Arts</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/img/favicon.png") rel="icon">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/img/apple-touch-icon.png") rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/bootstrap/css/bootstrap.min.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/icofont/icofont.min.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/boxicons/css/boxicons.min.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/owl.carousel/assets/owl.carousel.min.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/venobox/venobox.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/remixicon/remixicon.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/vendor/aos/aos.css") rel="stylesheet">
+    @*<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+
+    <!-- Template Main CSS File -->
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/css/style.css") rel="stylesheet">
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/css/rate.css") rel="stylesheet">
+
+
+    <!-- =======================================================
+    * Template Name: Gp - v2.2.1
+    * Template URL: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top " style="background-color:black;">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <h1 class="logo"><a href="@Url.Action("Home", "Home")">FA<span>.</span></a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="@Url.Action("Home", "Home")">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Collection</a></li>
+                    <li><a href="#team">Team</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
+
+
+                    @if (User.IsInRole("User"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Dashboard</a>
+                            <ul>
+                                <li><a href="@Url.Action("CustomerDashboard", "Customerdash")">My Profile</a></li>
+                                <li><a href="@Url.Action("CustomerArts", "ArtWorks")">My Drawings</a></li>
+                                <li><a href="@Url.Action("Create", "ArtWorks")">Add Art</a></li>
+                                <li><a href="@Url.Action("CustomerCarts", "Carts")">My Orders</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Dashboard</a>
+                            <ul>
+                                <li><a href="@Url.Action("AdminDashboard", "AdminDashboard")">My Profile</a></li>
+                                <li><a href="@Url.Action("AddEmployee", "Employee")">Add Employee</a></li>
+                                <li><a href="@Url.Action("Create", "Tasks")">Add Task</a></li>
+                                <li><a href="@Url.Action("Index1", "ArtWorks")">Search</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Accountant"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Dashboard</a>
+                            <ul>
+                                <li><a href="@Url.Action("AccountantDashboard", "AccountantDash")">My Profile</a></li>
+                                <li><a href="@Url.Action("Index", "SalarySlips")">Add Slip</a></li>
+                                <li><a href="@Url.Action("Table3", "ArtWorks")">Sold Arts</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (User.IsInRole("Employee"))
+                    {
+                        <li class="drop-down">
+                            <a href="">Dashboard</a>
+                            <ul>
+                                <li><a href="@Url.Action("EmployeeDashboard", "EmployeeDash")">My Profile</a></li>
+                                <li><a href="@Url.Action("New1", "Tasks")">My Tasks</a></li>
+                                <li><a href="@Url.Action("UserAttendance", "Attendances")">My Attendance</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+
+
+            @if (!User.IsInRole("User") && !User.IsInRole("Admin") && !User.IsInRole("Accountant") && !User.IsInRole("Employee"))
+            {
+                <a href="@Url.Action("Login", "Account")" class="get-started-btn">Login</a>
+
+            }
+            @if (User.IsInRole("User") || User.IsInRole("Admin") || User.IsInRole("Accountant") || User.IsInRole("Employee"))
+            {
+
+                <a asp-action="Logout" class="get-started-btn">Logout</a>
+            }
+
+
+        </div>
+    </header><!-- End Header -->
+
+    @RenderBody()
+
+
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-info">
+                            <h3>FA<span>.</span></h3>
+                            <p>
+                                Jordan,Irbid <br>
+                                <strong>Phone:</strong> 796661114<br>
+                                <strong>Email:</strong> info@Fine.com<br>
+                            </p>
+                            <div class="social-links mt-3">
+                                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Gallery</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">ContactUS</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Services</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Selling</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Shopping</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Shipping</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Our Newsletter</h4>
+                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>FA</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="ri-arrow-up-line"></i></a>
+    <div id="preloader"></div>
+    <!-- Vendor JS Files -->
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/jquery/jquery.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/jquery.easing/jquery.easing.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/php-email-form/validate.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/owl.carousel/owl.carousel.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/isotope-layout/isotope.pkgd.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/venobox/venobox.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/waypoints/jquery.waypoints.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/counterup/counterup.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/vendor/aos/aos.js")></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rating/1.5.0/bootstrap-rating.min.js"></script>
+    <!-- Template Main JS File -->
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/js/main.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/js/jquery.unobtrusive-ajax.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Home/assets/js/jquery.validate.unobtrusive.min")></script>
+    <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+</body>
+
+</html>

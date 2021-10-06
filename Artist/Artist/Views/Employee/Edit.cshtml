@@ -1,0 +1,171 @@
+﻿@model Artist.Models.Users
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Employee</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Edit</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-4">
+            
+                <form asp-action="Edit" enctype="multipart/form-data">
+                    <div id="contact-form" class="form-container" data-form-container>
+                        <div class="row align-items-center justify-content-center">
+                            <div class="form-title ">
+                                <h2 class="text-center">Edit Employee Info</h2>
+                            </div>
+                        </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="UserId" />
+
+                        <div class="input-container">
+
+
+
+
+
+                            <div class="row">
+                                <label class="control-label">username</label>
+
+                                <span class="req-input">
+
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" asp-for="Username">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">First Name</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="tel" asp-for="FirstName" placeholder="Number 1">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Last Name</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="tel" asp-for="LastName">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Email</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" asp-for="Email">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Number 1</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="tel" asp-for="PhoneNumber1">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Number 2</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="tel" asp-for="PhoneNumber2">
+                                </span>
+                            </div>
+
+                            <div class="row">
+                                <label class="control-label">Gender</label>
+
+                                <select name="Gender" asp-for="Gender" id="cars" style="width:100%">
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+
+                                </select>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Country</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" class="form-control" name="Country" asp-for="@Model.Location.CityName" style="font-size:large">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">City</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" class="form-control" name="CityName" asp-for="@Model.Location.CityName" style="font-size:large">
+                                </span>
+                            </div>
+
+                            <div class="row">
+                                <label class="control-label">Department</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" class="form-control" name="Department" asp-for="@Model.Dep.Title" style="font-size:large" readonly>
+                                </span>
+                            </div>
+
+
+                            <div class="row">
+                                <label class="control-label">Position</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" asp-for="Position">
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label class="control-label">Salary</label>
+
+                                <span class="req-input">
+                                    <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                    <input type="text" asp-for="Salary">
+                                </span>
+                            </div>
+
+                            <div class="row submit-row">
+                                <button type="submit" class="btn btn-block submit-form" value="Edit" style="font-size:large;">Edit</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+           
+            </div>
+    </div>
+</div>
+
+
+
+
+
+
+

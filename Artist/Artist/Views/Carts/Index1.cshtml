@@ -1,0 +1,92 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc;
+
+@model X.PagedList.IPagedList<Artist.Models.Cart>
+@{
+    ViewData["Title"] = "Index1";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Carts</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">On Way</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <aside class="profile-nav alt">
+                    <section class="card">
+                        <div class="card-header user-header alt bg-dark">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h2 class="text-light display-6">@item.UserName</h2>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>ID:</strong> @item.CartId
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Location:</strong> @item.Location
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Number:</strong> @item.PhoneNumber
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Total orders:</strong> @item.TotalOrders
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Total price:</strong> &euro; @item.TotalPrice
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Expected shipping:</strong> @item.ExpectedShipping.Value.ToShortDateString()
+                            </li>
+                            <li class="list-group-item">
+                                <span>Status:</span>@item.Status
+                            </li>
+
+                            <li class="list-group-item">
+
+                                <a asp-action="Edit1" asp-route-id="@item.CartId">Edit</a>
+                            </li>
+
+                        </ul>
+
+                    </section>
+                </aside>
+            </div>
+        }
+    </div>
+    <div class="row align-items-center justify-content-center mt-2">
+        <ul id="pageListul" style="list-style:none;">
+            <li id="pageListLI">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+            </li>
+        </ul>
+    </div>
+</div>
+
+

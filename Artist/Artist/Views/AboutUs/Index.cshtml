@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Artist.Models.AboutUs>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>About Us</h1>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Info</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+        @foreach (var item in Model)
+        {
+        <img src=@Url.Content("~/Image/" + item.Image) asp-append-version="true" style="width:250px; height:250px"   />
+
+        <div class="col-md-4">
+            <aside class="profile-nav alt">
+                <section class="card">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Title:</strong> @item.Title
+                        </li>
+                        <li class="list-group-item">
+                            <strong>SubTitle:</strong> @item.SubTitle
+                        </li>
+                       
+                        <li class="list-group-item">
+                            <strong>Point1:</strong> @item.Description1
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Point2:</strong> @item.Description2
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Point3:</strong> @item.Description
+                        </li>
+
+                        <li class="list-group-item">
+
+                            <a asp-action="Edit" asp-route-id="@item.AboutUsId">Edit</a>
+                        </li>
+
+
+                    </ul>
+
+                </section>
+            </aside>
+        </div>
+        }
+    </div>
+
+</div>

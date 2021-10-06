@@ -1,0 +1,128 @@
+﻿@model Artist.ViewModel.CustomerVM
+
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Arts</title>
+
+    <!-- favicon -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+          crossorigin="anonymous" />
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+
+    <link href=@Url.Content("/MyStaticFiles/Home/assets/css/login.css") rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <ul class="links">
+            <li class="links-items"><a href=@Url.Action("Home", "Home")>Home</a></li>
+            <li class="links-items"><a href=@Url.Action("Gallery", "Home")>Gallery</a></li>
+        </ul>
+    </header>
+    <main>
+        <div class="container" id="container">
+
+            <div class="form-container sign-up-container">
+               
+                <form class="myform" asp-action="AddCustomer">
+                    <div class="row rone">
+                        <div class="form-group col-md-6 fone py-1"> <input type="text" name="FirstName" class="form-control" placeholder="First name" required> </div>
+                        <div class="form-group col-md-6 ftwo py-1"> <input type="text" name="LastName" class="form-control" placeholder="Last name" required> </div>
+                    </div>
+                    <div class="row rtwo">
+                        <div class="form-group col-md-6 fthree py-1"> <input type="text" name="Username" class="form-control " placeholder="Username" required> </div>
+                        <div class="form-group col-md-6 ffour py-1"> <input type="email" name="Email" class="form-control " placeholder="Email" required> </div>
+                    </div>
+                    <div class="row rthree">
+                        <div class="form-group col-md-6 ffive py-1"> <input type="password" name="Password" class="form-control" placeholder="Password" required> </div>
+                        <div class="form-group col-md-6 fsix py-1"> <input type="password" name="ConfirmPassword" class="form-control" placeholder="Confirm Password" required> </div>
+                    </div>
+                    <div class="row rfour">
+                        <div class="form-group col-md-6 fsiven py-1"> <input type="number" name="PhoneNumber1" class="form-control" placeholder="PhoneNumber1" required> </div>
+                        <div class="form-group col-md-6 feight py-3">
+                            <select name="Gender" required class="form-control" >
+                                <option value="">Gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row rtwo">
+                        <div class="form-group col-md-6 fthree py-1"> <input type="text" name="Country" class="form-control jk" placeholder="Country" required> </div>
+                        <div class="form-group col-md-6 ffour py-1"> <input type="text" name="CityName" class="form-control lm" placeholder="City" required> </div>
+                    </div>
+                    <button type="submit">Sign Up</button>
+
+                </form>
+                    </div>
+            <div class="form-container sign-in-container">
+                <form asp-action="Login">
+                    <h1 style="color:black">Sign in</h1>
+
+                    <input type="text" name='username' id="username" placeholder="username" required>
+                    <input type="password" name='password' id='password' placeholder="password" required>
+
+                    <a href="#">Forgot your password?</a>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <br>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <br>
+                        <p>Enter your personal details and start shopping </p>
+                        <br>
+                        <button class="ghost" id="signUp">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- jQuery -->
+    <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <!-- js -->
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
+</body>
+
+</html>
+
+
+

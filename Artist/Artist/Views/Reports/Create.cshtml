@@ -1,0 +1,71 @@
+﻿@model Artist.Models.Reports
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/Admin.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Reports</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Create</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div id="contact-form" class="form-container" data-form-container>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="form-title ">
+                            <h2 class="text-center">Add Report</h2>
+                        </div>
+                    </div>
+                    <div class="input-container">
+                        <div class="row" hidden>
+                            <label asp-for="ReportName" class="control-label"></label>
+                            <input asp-for="ReportName" class="form-control" />
+                            <span asp-validation-for="ReportName" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <label asp-for="UploadFile" class="control-label"> Upload File</label>
+                            <input asp-for="UploadFile" accept="file/*" type="file"   />
+                            <span asp-validation-for="UploadFile" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <span class="req-input message-box">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <textarea type="textarea" asp-for="ReportDescription" data-min-length="10" placeholder="Description"></textarea>
+                        </div>
+                        <div class="row submit-row">
+                            <button type="submit" class="btn btn-block submit-form" value="Create" style="font-size:large;">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

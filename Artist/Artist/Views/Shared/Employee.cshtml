@@ -1,0 +1,223 @@
+﻿<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Fine Arts</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/bootstrap/dist/css/bootstrap.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/addEmployee/style.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/card.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/portfile.css")>
+
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/formm.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/cart.css")>
+
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/owl.carousel/assets/owl.carousel.min.css")>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/font-awesome/css/font-awesome.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/themify-icons/css/themify-icons.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/flag-icon-css/css/flag-icon.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/selectFX/css/cs-skin-elastic.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/vendors/jqvmap/dist/jqvmap.min.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/data-table/bootstrap-table.css")>
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/data-table/bootstrap-editable.css")>
+
+
+    <link rel="stylesheet" href=@Url.Content("/MyStaticFiles/Admin/a/css/dash.css")>
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+
+    <!-- Left Panel -->
+
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand"><img src="images/logo.png" alt=""></a>
+                <a class="navbar-brand hidden"><img src="images/logo2.png" alt=""></a>
+            </div>
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="@Url.Action("EmployeeDashboard", "EmployeeDash")"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                    </li>
+                    <h3 class="menu-title">Work</h3><!-- /.menu-title -->
+                    <li>
+                        <a href="@Url.Action("UserAttendance", "Attendances")"> <i class="menu-icon fa fa-user"></i>My Attendance</a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>My Tasks</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-info"></i><a href="@Url.Action("New1", "Tasks")">New Tasks</a></li>
+
+                            <li><i class="menu-icon fa fa-check-circle-o"></i><a href="@Url.Action("Solved1", "Tasks")">Solved Tasks</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index1", "SalarySlips")"> <i class="menu-icon fa fa-download"></i>Salary Slips</a>
+                    </li>
+
+
+                    <h3 class="menu-title">Pages</h3><!-- /.menu-title -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="@Url.Action("Home", "Home")">Home</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a asp-action="Logout"> <i class="menu-icon fa fa-power-off"></i> Logout</a>
+                    </li>
+
+
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside><!-- /#left-panel -->
+    <!-- Left Panel -->
+    <!-- Right Panel -->
+
+    <div id="right-panel" class="right-panel">
+
+        <!-- Header-->
+        <header id="header" class="header">
+
+            <div class="header-menu">
+
+                <div class="col-sm-7">
+
+
+                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
+                    <div class="header-left">
+
+
+                        <div class="col-sm-4">
+                            <div class="page-header ">
+                                <div class="page-title">
+                                    <a class="nav-link" href="@Url.Action("Home", "Home")">Home</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="page-header ">
+                                <div class="page-title">
+                                    <a class="nav-link" href="@Url.Action("Gallery", "Home")">Gallery</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle fa fa-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        </a>
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="@Url.Action("EmployeeDashboard", "EmployeeDash")"><i class="fa fa-user"></i> My Profile</a>
+                            <a class="nav-link" href="@Url.Action("UserAttendance", "Attendances")"><i class="fa fa-info"></i> My Attendance</a>
+                            <a class="nav-link" href="@Url.Action("New1", "Tasks")"><i class="fa fa-info"></i> My Tasks</a>
+
+                            <a class="nav-link" asp-action="Logout"><i class="fa fa-power-off"></i> Logout</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </header><!-- /header -->
+        <!-- Header-->
+
+
+
+        <div class="content mt-3">
+
+            @RenderBody()
+
+
+
+        </div> <!-- .content -->
+    </div><!-- /#right-panel -->
+    <!-- Right Panel -->
+
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/jquery/dist/jquery.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/addEmployee/script.js")></script>
+
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/popper.js/dist/umd/popper.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/bootstrap/dist/js/bootstrap.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/main.js")></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/bootstrap-table.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/tableExport.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/data-table-active.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/bootstrap-table-editable.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/bootstrap-editable.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/bootstrap-table-resizable.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/colResizable-1.5.source.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/data-table/bootstrap-table-export.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/form.js")></script>
+
+
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/chart.js/dist/Chart.bundle.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/dashboard.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/widgets.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/jqvmap/dist/jquery.vmap.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/jqvmap/dist/maps/jquery.vmap.world.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/vendors/owl.carousel/owl.carousel.min.js")></script>
+    <script src=@Url.Content("/MyStaticFiles/Admin/a/js/html2pdf.bundle.min.js")></script>
+    <script>
+    (function ($) {
+            "use strict";
+
+            jQuery('#vmap').vectorMap({
+                map: 'world_en',
+                backgroundColor: null,
+                color: '#ffffff',
+                hoverOpacity: 0.7,
+                selectedColor: '#1de9b6',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: ['#1de9b6', '#03a9f5'],
+                normalizeFunction: 'polynomial'
+            });
+        })(jQuery);</script>
+
+</body>
+
+</html>
+

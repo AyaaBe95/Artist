@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Artist.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Categories</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">All</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-3">
+    <div class="animated fadeIn">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <div class="card">
+                    <p class="ml-3 mt-3">
+                        <a asp-action="Create">Create New</a>
+                    </p>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        Category Name
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CategoryName)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a>
+                                        </td>
+s
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

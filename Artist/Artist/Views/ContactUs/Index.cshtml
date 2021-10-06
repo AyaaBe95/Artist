@@ -1,0 +1,77 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc;
+
+@model X.PagedList.IPagedList<Artist.Models.ContactUs>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Messages</h1>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">All</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content mt-3">
+    <div class="row align-items-center justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <aside class="profile-nav alt">
+                    <section class="card">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <strong>Name:</strong> @item.Name
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Email:</strong> @item.Email
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Subject:</strong> @item.Subject
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Message:</strong> @item.Message
+                            </li>
+                            <li class="list-group-item">
+
+                                <form asp-action="Delete">
+
+                                    @Html.Hidden("id", @item.ContactId)
+                                    <button type="submit" value="Delete">&#10005;</button>
+                                </form>
+                            </li>
+
+
+                        </ul>
+
+                    </section>
+                </aside>
+            </div>
+        }
+    </div>
+    <div class="row align-items-center justify-content-center mt-2">
+        <ul id="pageListul" style="list-style:none;">
+            <li id="pageListLI">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+            </li>
+        </ul>
+    </div>
+</div>

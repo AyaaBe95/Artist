@@ -1,0 +1,58 @@
+﻿@model Artist.Models.Services
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/Admin2.cshtml";
+
+}
+
+<div class="content mt-3">
+
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div id="contact-form" class="form-container" data-form-container>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="form-title ">
+                            <h2 class="text-center">Edit Service Info</h2>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="WebId" />
+
+                    <div class="input-container">
+                        
+                        <div class="row">
+                            <label class="control-label">Title</label>
+
+                            <span class="req-input">
+
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <input type="text" asp-for="Title">
+                            </span>
+                        </div>
+
+
+                        <div class="row">
+                            <label class="control-label">Description</label>
+
+                            <span class="req-input message-box">
+                                <span class="input-status" data-toggle="tooltip" data-placement="top"> </span>
+                                <textarea type="textarea" asp-for="Description" data-min-length="10"></textarea>
+                        </div>
+                       
+
+                        <div class="row submit-row">
+                            <button type="submit" class="btn btn-block submit-form" value="Edit" style="font-size:large;">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+

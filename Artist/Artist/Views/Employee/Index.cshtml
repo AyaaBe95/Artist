@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Artist.Models.Users>
+
+@{ int rowNo1 = 0;
+    Layout = "~/Views/Shared/Admin2.cshtml";
+}
+
+<div class="content mt-3">
+
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" id="pdfTable">
+            <div class="sparkline13-list" style=" background: #fff; padding: 20px; ">
+                <div class="sparkline13-hd">
+                    <div class="main-sparkline13-hd">
+                        <h1 style="font-size: 20px; color: #303030;">Employees Data Table</h1>
+                    </div>
+                </div>
+                <div class="sparkline13-graph">
+                    <div class="datatable-dashv1-list custom-datatable-overright">
+                        <div id="toolbar">
+                            <select class="form-control dt-tb">
+                                <option value="">Export Basic</option>
+                                <option value="all">Export All</option>
+                                <option value="selected">Export Selected</option>
+                            </select>
+                        </div>
+                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                               data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name1">Full name</th>
+                                    <th data-field="name3">Email</th>
+                                    <th data-field="name4">Gender</th>
+                                    <th data-field="name5"> Number1</th>
+                                    <th data-field="name6"> Number2</th>
+                                    <th data-field="name7">Country</th>
+                                    <th data-field="name8">City</th>
+                                    <th data-field="name9">Join Date</th>
+                                    <th data-field="name10">Department</th>
+                                    <th data-field="name11">Position</th>
+                                    <th data-field="name12">Salary</th>
+
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                <form asp-action="Delete">
+
+                                                    @Html.Hidden("id", @item.UserId)
+                                                    <button type="submit" value="Delete">&#10005;</button>
+                                                </form>
+
+                                            </td>                                           
+                                            <td class="text-center">@(rowNo1 += 1)</td>
+                                            <td class="text-center">@item.fullname</td>
+                                            <td class="text-center">@item.Email</td>
+                                            <td class="text-center">@item.Gender</td>
+                                            <td class="text-center">@item.PhoneNumber1</td>
+                                            <td class="text-center">@item.PhoneNumber2</td>
+                                            <td class="text-center">
+                                                @Html.DisplayFor(model => item.Location.Country)
+                                            </td>
+                                            <td class="text-center"> @Html.DisplayFor(model => item.Location.CityName)</td>
+                                            <td class="text-center"> @item.JoinDate.Value.ToShortDateString()</td>
+
+                                            <td class="text-center">
+                                                @Html.DisplayFor(model => item.Dep.Title)
+                                            </td>
+                                            <td class="text-center">@item.Position</td>
+                                            <td class="text-center">@item.Salary</td>
+
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a>
+
+                                            </td>
+                                            
+
+                                        </tr>
+
+                                        
+                                        }
+
+
+                                    </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row align-items-center justify-content-center mt-3">
+        <form asp-action="Export">
+            <div class="col-md-5">
+                <input type="submit" value="Excle Report"
+                       class="btn btn-dark" asp-action="Export" style="font-size:large; color:white" />
+            </div>
+        </form>
+
+        <form asp-action="CreatePdf">
+            <div class="col-md-5">
+                <input type="submit" value="Pdf Report"
+                       class="btn btn-dark" asp-action="CreatePdf" style="font-size:large; color:white" />
+            </div>
+
+        </form>
+    </div>
+   
+</div>

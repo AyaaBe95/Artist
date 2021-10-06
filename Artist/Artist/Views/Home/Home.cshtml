@@ -1,0 +1,369 @@
+﻿@model Tuple<IEnumerable<Artist.Models.ArtWorks>, IEnumerable<Artist.Models.Team>, IEnumerable<Artist.Models.Review>>;
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/HomeLa.cshtml";
+    var WebSiteName = ViewBag.WebSiteName;
+    var Logo = ViewBag.Logo;
+    var SubTitle = ViewBag.SubTitle;
+    var Country = ViewBag.Country;
+    var City = ViewBag.City;
+    var Email = ViewBag.Email;
+    var AvgRate = ViewBag.value;
+    List<Services> service1 = ViewBag.Service1;
+    List<AboutUs> About = ViewBag.about;
+
+    List<Services> service2 = ViewBag.Service2;
+    List<Services> service3 = ViewBag.Service3;
+
+
+    var PhoneNumber = ViewBag.PhoneNumber;
+
+}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up" >
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150" >
+            <div class="col-xl-6 col-lg-8">
+                <h1>@WebSiteName<span>.</span></h1>
+                <h2>@SubTitle</h2>
+            </div>
+        </div>
+
+
+
+    </div>
+</section><!-- End Hero -->
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about" data-aos="fade-up" >
+        <div class="container" data-aos="fade-left" data-aos-delay="100"  >
+
+            <div class="row">
+                @foreach (var item in About)
+                {
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <img src=@Url.Content("~/Image/" + item.Image) asp-append-version="true" style="width:450px; height:400px; margin-left:25px;" />
+                </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                        <h3>@item.Title</h3>
+                        <p style="font-size:x-large">
+                            @item.SubTitle
+                        </p>
+                        <ul>
+                            <li style="font-size:x-large"><i class="ri-check-double-line"></i> @item.Description1</li>
+                            <li style="font-size:x-large"><i class="ri-check-double-line mt-2"></i> @item.Description2</li>
+                            <li style="font-size:x-large"><i class="ri-check-double-line mt-2"></i> @item.Description</li>
+                        </ul>
+                        
+                    </div>
+                }
+                </div>
+                
+        </div>
+    </section><!-- End About Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services" data-aos="fade-up" >
+        <div class="container" data-aos="zoom-in" data-aos-delay="100" >
+
+            <div class="section-title">
+                <h2>Services</h2>
+                <p>Check our Services</p>
+            </div>
+
+            <div class="row">
+                @foreach (var item in service1)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-money"></i></div>
+                            <h4>@item.Title</h4>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var item in service2)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-basket"></i></div>
+                            <h4>@item.Title</h4>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+
+                @foreach (var item in service3)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" >
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-bus"></i></div>
+                            <h4>@item.Title</h4>
+                            <p>@item.Description</p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta" data-aos="zoom-in">
+
+        <div class="container d-flex justify-content-center" >
+            <div class="row ">
+                <div class="col">
+                    <div class="card rate-card">
+                        <div class="card-body text-center rate-card">
+                            <span class="myratings">@AvgRate</span>
+                            <h4 class="mt-1" style="font-size:large">Rate us</h4>
+                            <form asp-action="Rate" id="rateForm" data-ajax="true" data-ajax-method="POST" onsubmit="submitForm()">
+                                <fieldset class="rating">
+
+                                        <input type="radio" onblur="" id="star5" name="rating" value="5" />
+                                        <label class="full" for="star5" title="Awesome - 5 stars"></label>
+
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+                                        <div class="form-group ml-5">
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Name" data-rule="minlen:4" style="font-size:medium" />
+                                        </div>
+                                    <div class="form-group ml-5">
+                                        <textarea class="form-control" name="comment" id="comment" rows="3" data-msg="Please write something for us" placeholder="Comment" style="font-size:medium"></textarea>
+                                    </div>
+                                    <div class="text-center ml-5"><button id="btn" type="submit" class="cta-btn" style="background-color: #ffc451;">Save</button></div>
+                                    <span id="result" class="ml-3"></span>
+                                </fieldset>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Cta Section -->
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio"  >
+        <div class="container" data-aos="fade-up" >
+
+            <div class="section-title">
+                <h2>Gallery</h2>
+                <p>Check Latest Drawings</p>
+            </div>
+            <div class="row portfolio-container " >
+
+                @foreach (var item in Model.Item1)
+                {
+                    <div class="col-lg-4 col-md-6 portfolio-item ">
+                        <div class="portfolio-wrap">
+                            <img src=@Url.Content("~/Image/" + item.ImageName) asp-append-version="true" style="width:350px;height:300px;" class="img-fluid" alt="">
+                            <div class="portfolio-info">
+                                <h4>@item.Title</h4>
+                                <p>
+                                    @Html.DisplayFor(model => item.Category.CategoryName)
+                                </p>
+                                <div class="portfolio-links">
+                                    <a href=@Url.Content("~/Image/" + item.ImageName) title="Show" data-gall="portfolioGallery" class="venobox"><i class="bx bx-plus"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.ArtId" title="More Details"><i class="bx bx-link"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+
+            </div>
+
+        </div>
+    </section><!-- End Portfolio Section -->
+   
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials" >
+        <div class="container" data-aos="zoom-in">
+
+            <div class="owl-carousel testimonials-carousel">
+
+                @foreach (var item in Model.Item3)
+                {
+                <div class="testimonial-item">
+                    <h3>@item.Name</h3>
+                    @for (int i = 0; i < item.ReviewValue; i++)
+                    {
+                        <span class="fa fa-star mt-2"></span>
+                    }
+                    <p>
+                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                        @item.Comment
+                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                    </p>
+                </div>
+
+                }
+
+            </div>
+
+        </div>
+    </section><!-- End Testimonials Section -->
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+        <div class="container" data-aos="fade-up" >
+
+            <div class="section-title">
+                <h2>Team</h2>
+                <p>Check our Team</p>
+            </div>
+
+            <div class="row">
+                @if (Model.Item2 != null)
+                {
+                    @foreach (var item in Model.Item2)
+                    {
+                        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                            <div class="member" >
+                                <div class="member-img">
+                                    <img src=@Url.Content("~/Image/" + @item.Image) class="img-fluid" alt="">
+                                    <div class="social">
+                                        <a href="@item.TwiterLink"><i class="icofont-twitter"></i></a>
+                                        <a href="@item.FacebookLink"><i class="icofont-facebook"></i></a>
+                                        <a href="@item.InstgramLink"><i class="icofont-instagram"></i></a>
+                                    </div>
+                                </div>
+                                <div class="member-info">
+                                    <h4>@item.Name</h4>
+                                    <span>@item.Position</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    </section><!-- End Team Section -->
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up" >
+
+            <div class="section-title">
+                <h2>Contact</h2>
+                <p>Contact Us</p>
+            </div>
+
+            <div>
+                <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-lg-4">
+                    <div class="info">
+                        <div class="address">
+                            <i class="icofont-google-map"></i>
+                            <h4>Location:</h4>
+                            <p>@Country, @City</p>
+                        </div>
+
+                        <div class="email">
+                            <i class="icofont-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>@Email</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="icofont-phone"></i>
+                            <h4>Call:</h4>
+                            <p>@PhoneNumber</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-8 mt-5 mt-lg-0">
+
+                    <form asp-action="Create" id="contactForm" data-ajax="true" data-ajax-method="POST" onsubmit="submitForm2()">
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="Name" class="form-control" id="Name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required  style="font-size:large"/>
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="email" class="form-control" name="Email" id="Email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required style="font-size:large" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Subject" id="Subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" required style="font-size:large" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="Message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" required style="font-size:large"></textarea>
+                            <div class="validate"></div>
+                        </div>
+
+
+
+                        <div class="text-center">
+                            <button type="submit" id="btn2" style="font-family: Raleway,sans-serif; font-weight: 600; font-size: 16px; letter-spacing: 1px; display: inline-block; padding: 8px 28px; border-radius: 4px; transition: 0.5s; margin-top: 10px; border: 2px solid #fff; background-color: #ffc451; color: white; ">
+                                Send Message
+                            </button>
+                        </div>
+                        <div class="row align-items-center justify-content-center mt-2">
+                            <span id="result2"></span>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Section -->
+
+
+</main><!-- End #main -->
+<!-- ======= Footer ======= -->
+
+<script>
+
+    function submitForm() {
+
+        $('#result').html('Thank you for rating');
+        $("#btn").attr('disabled', 'disabled');
+    }
+
+    function submitForm2() {
+
+        $('#result2').html('Submintted Succesfully!');
+        $("#btn2").attr('disabled', 'disabled');
+    }
+</script>
+
+
+    
+   
+
+
+
+
+

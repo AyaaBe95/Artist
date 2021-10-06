@@ -1,0 +1,48 @@
+﻿@model Artist.Models.ArtWorks
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/Customer.cshtml";
+
+}
+
+
+<div class="content mt-3">
+    <div>
+        <a asp-action="CustomerArts">Back to List</a>
+    </div>
+
+    <div class="row align-items-center justify-content-center">
+
+        <div>
+            <img src=@Url.Content("~/Image/" + Model.ImageName) asp-append-version="true" class="img-fluid" style="width:900px; height:400px" />
+
+        </div>
+
+        <div class="card">
+
+            <div>
+                <strong>Price</strong>: @Html.DisplayFor(model => model.ArtPrice)
+            </div>
+
+            <div>
+                <strong>Category:</strong>@Html.DisplayFor(model => model.Category.CategoryName)
+            </div>
+            <div>
+                <strong>Quantity:</strong>@Html.DisplayFor(model => model.Quantity)
+            </div>
+            <div><strong>Posted by:</strong>@Html.DisplayFor(model => model.User.fullname)</div>
+            <div>
+                <strong>Artist:</strong>: @Html.DisplayFor(model => model.ArtistFname) @Html.DisplayFor(model => model.ArtistLname)
+            </div>
+            <div>
+                <strong>Description:</strong> @Html.DisplayFor(model => model.Description)
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
